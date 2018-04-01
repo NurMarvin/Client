@@ -1,0 +1,76 @@
+{
+  "name": "leagueofmemories",
+  "productName": "LeagueOfMemories",
+  "version": "0.2.7",
+  "description": "League of Memories - A modded League of Legends 4.20 server",
+  "license": "MIT",
+  "author": "LeagueOfMemories",
+  "scripts": {
+    "test": "xo",
+    "start": "electron .",
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "files": [
+    "index.js",
+    "index.html",
+    "index.css",
+    "!assets/ChampionList.json",
+    "!assets/ExtendedChampionList.json"
+  ],
+  "keywords": [
+    "electron-app",
+    "electron"
+  ],
+  "dependencies": {
+    "electron-builder-squirrel-windows": "^20.2.0",
+    "electron-is-dev": "^0.3.0",
+    "electron-simple-updater": "^1.2.3"
+  },
+  "devDependencies": {
+    "devtron": "^1.1.0",
+    "electron": "^1.8.3",
+    "electron-builder": "^10.12.0",
+    "electron-simple-publisher": "^0.4.9",
+    "electron-squirrel-startup": "^1.0.0",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node",
+      "browser"
+    ]
+  },
+  "build": {
+    "appId": "com.leagueofmemories.app",
+    "appImage": {
+      "systemIntegration": "doNotAsk"
+    },
+    "files": [
+      "!publisher.json",
+      "!README.md",
+      "!updates.json",
+      "!GenerateBundle.bat",
+      "!WindowsExec.bat",
+      "!WindowsInstaller.bat",
+      "!PublishUpdate.bat",
+      "!WindowsInstaller.bat"
+    ],
+    "linux": {
+      "category": "Game"
+    },
+    "win": {
+      "target": "squirrel",
+      "iconUrl": "https://raw.githubusercontent.com/Deudly/LeagueOfMemoriesRELEASE/master/leaguememories.ico",
+      "icon": "assets/icon"
+    },
+    "squirrelWindows": {
+      "iconUrl": "https://raw.githubusercontent.com/Deudly/LeagueOfMemoriesRELEASE/master/leaguememories.ico"
+    },
+    "icon": "assets/icon"
+  },
+  "updater": {
+    "url": "https://raw.githubusercontent.com/Deudly/LeagueOfMemoriesRELEASE/master/updates.json"
+  }
+}
