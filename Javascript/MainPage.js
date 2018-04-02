@@ -200,8 +200,6 @@ MainPage.prototype.getDiv = function () {
     return this.mainDiv;
 };
 
-/*var ChampionList = require('./ChampionList.js')
-var ExtendedChampionsData = require('ExtendedChampionList.js')*/
 var ChampionList = [
     "Blitzcrank",
     "Caitlyn",
