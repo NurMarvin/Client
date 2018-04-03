@@ -15,6 +15,7 @@ class AppLogic {
         this.loginPage = new Login(this);
         this.mainPage = new MainPage(this);
         this.cdnDownloader = new CDNdownloader(this);
+        this.marketPage = new MarketPage(this);
 
         this.gameServerRepositories = [];
 
@@ -41,12 +42,58 @@ class AppLogic {
                         }),
                         this.center = CreateElement({
                             type: 'div', class: 'col s6 center-align', elements: [
+                            ]
+                        }),
+                        this.rightNav = CreateElement({
+                            type: 'div', class: 'col s3 right-align', elements: [
+                                this.minimize = CreateElement({ type: 'span', id: 'min-btn', class: 'fa fa-window-minimize AppLogic_Button' }),
+                                this.maximize = CreateElement({ type: 'span', id: 'max-btn', class: 'fa fa-window-maximize AppLogic_Button' }),
+                                this.close = CreateElement({ type: 'span', id: 'close-btn', class: 'fa fa-window-close AppLogic_Button' })
+                            ]
+                        })
+                    ]
+                }),
+                this.goldBarDiv = CreateElement({ type: 'div', class: 'AppLogic_GoldBar' }),
+                this.viewDiv = CreateElement({ type: 'div', class: 'AppLogic_ViewDiv' })
+            ]
+        });
+        document.body.appendChild(this.mainDiv);
+
+        document.getElementById("min-btn").addEventListener("click", function (e) {
+            var window = remote.getCurrentWindow();
+            window.minimize();
+        });
+
+        document.getElementById("max-btn").addEventListener("click", function (e) {
+            var window = remote.getCurrentWindow();
+            if (!window.isMaximized()) {
+                window.maximize();
+            } else {
+                window.unmaximize();
+            }
+        });
+
+        document.getElementById("close-btn").addEventListener("click", function (e) {
+            var window = remote.getCurrentWindow();
+            window.close();
+        });
+    };
+    createDefinitiveUI() {
+        this.mainDiv = CreateElement({
+            type: 'div', class: 'AppLogic_MainDiv', elements: [
+                this.navbar = CreateElement({
+                    type: 'nav', class: 'AppLogic_Navbar nav-wrapper row', elements: [
+                        this.titleDiv = CreateElement({
+                            type: 'div', class: 'col s3 left-align', elements: [
+                                CreateElement({ type: 'span', class: 'brand-logo', text: 'League of Memories' })
+                            ]
+                        }),
+                        this.center = CreateElement({
+                            type: 'div', class: 'col s6 center-align', elements: [
                                 this.tabNav = CreateElement({
                                     type: 'div', elements: [
-                                        this.playButton = CreateElement({ type: 'button', class: 'AppLogic_NavButtonSelected', text: 'Play' }),
-                                        this.masteriesButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: 'Masteries' }),
-                                        this.runesButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: 'Runes' }),
-                                        this.settingsButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: 'Settings' })
+                                        this.playButton = CreateElement({ type: 'button', class: 'AppLogic_NavButtonSelected', text: 'Play', onClick: CreateFunction(this, this.showMainPage) }),
+                                        this.marketButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: 'Market', onClick: CreateFunction(this, this.showMarketPage) })
                                     ]
                                 }),
                             ]
@@ -86,6 +133,19 @@ class AppLogic {
         });
     };
     connectedToServer() {
+        this.mainDiv.remove();
+        this.createDefinitiveUI();
+        this.center = CreateElement({
+            type: 'div', class: 'col s6 center-align', elements: [
+                this.tabNav = CreateElement({
+                    type: 'div', elements: [
+                        this.playButton = CreateElement({ type: 'button', class: 'AppLogic_NavButtonSelected', text: 'Play', onClick: CreateFunction(this, this.showMainPage) }),
+                        this.marketButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: 'Market', onClick: CreateFunction(this, this.showMarketPage) })
+                    ]
+                }),
+            ]
+        })
+        document.body.appendChild(this.center);
         //Hide login page, show main page, send nickname
         this.loginPage.getDiv().remove();
         this.showMainPage();
@@ -99,6 +159,7 @@ class AppLogic {
         this.viewDiv.appendChild(this.loginPage.getDiv());
     };
     showMainPage() {
+        this.marketPage.getDiv().remove();
         this.viewDiv.appendChild(this.mainPage.getDiv());
         var mainPage = this.mainPage;
         //For materialize
@@ -116,6 +177,11 @@ class AppLogic {
             mainPage.championSelectChange();
         });
     };
+    showMarketPage() {
+        console.log("clicked")
+        this.mainPage.getDiv().remove();
+        this.viewDiv.appendChild(this.marketPage.getDiv());
+    }
     launchLeagueOfLegends(port, playerNum) {
         this.appData.lastConnectPort = port;
         this.appData.lastConnectPlayerNum = playerNum;
