@@ -87,8 +87,6 @@ class AppLogic {
     };
     connectedToServer() {
         //Send nickname
-        this.networkManager.sendNickname();
-        this.networkManager.sendKey(this.appData.key);
     };
     loggedIn() {
         //Hide login page, show main page, 
@@ -96,8 +94,11 @@ class AppLogic {
         this.showMainPage();
         this.mainPage.addToChat("Connected to server as " + this.appData.nickname);
         this.mainPage.addToChat("Please use official Discord chat to report bugs or contact us");
+        this.networkManager.sendNickname();
+        this.networkManager.sendKey(this.appData.key);
     }
     failWhileLogin() {
+        this.loginPage.loginButton.disabled = true;
         alert("Something went wrong while trying to login. Did you write your password well?")
     }
     showLoginPage() {
