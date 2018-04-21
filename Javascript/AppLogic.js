@@ -86,14 +86,20 @@ class AppLogic {
         });
     };
     connectedToServer() {
-        //Hide login page, show main page, send nickname
+        //Send nickname
+        this.networkManager.sendNickname();
+        this.networkManager.sendKey(this.appData.key);
+    };
+    loggedIn() {
+        //Hide login page, show main page, 
         this.loginPage.getDiv().remove();
         this.showMainPage();
         this.mainPage.addToChat("Connected to server as " + this.appData.nickname);
         this.mainPage.addToChat("Please use official Discord chat to report bugs or contact us");
-        this.networkManager.sendNickname();
-        this.networkManager.sendKey(this.appData.key);
-    };
+    }
+    failWhileLogin() {
+        alert("Something went wrong while trying to login. Did you write your password well?")
+    }
     showLoginPage() {
         this.loginPage.loginButton.disabled = false;
         this.viewDiv.appendChild(this.loginPage.getDiv());
