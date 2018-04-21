@@ -204,8 +204,7 @@ var ChampionList = [
     "Blitzcrank",
     "Caitlyn",
     "Ezreal",
-    "Katarina",
-    "Tristana",
+    "MissFortune",
     "Lucian",
     "Lulu"
 ]
