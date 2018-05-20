@@ -21,8 +21,9 @@ class AppData {
                 leaguePath = leaguePath + "\\";
             }
             var garenaPath = leaguePath;
-            leaguePath = leaguePath + "RADS/solutions/lol_game_client_sln/releases/0.0.1.68/deploy/";
+            leaguePath = leaguePath + "";
             leaguePath = leaguePath.replaceAll('\\', '/');
+            console.log("fefe" + leaguePath)
             garenaPath = garenaPath.replaceAll('\\', '/');
             var leagueExecutable = leaguePath + "League of Legends.exe";
             var garenaExecutable = garenaPath + "League of Legends.exe";
@@ -47,7 +48,7 @@ class AppData {
                 leaguePath = leaguePath + "\\";
             }
             leaguePath += "Contents/LoL/";
-            leaguePath = leaguePath + "RADS/projects/lol_game_client/releases/0.0.0.151/deploy/LeagueofLegends.app/Contents/MacOS/";
+            leaguePath = leaguePath + "";
             leaguePath = leaguePath.replaceAll('\\', '/');
             var leagueExecutable = leaguePath + "Leagueoflegends";
 
@@ -66,6 +67,8 @@ class AppData {
         return this.leaguePath;
     };
     getExecutablePath() {
+        var leaguePath = this.leaguePath;
+        this.executablePath = leaguePath + "/League of Legends.exe";
         return this.executablePath;
     };
     getExecutableDirectory() {
