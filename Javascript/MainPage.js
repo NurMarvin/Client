@@ -12,8 +12,8 @@ function MainPage(appLogic) {
             this.championDiv = CreateElement({
                 type: 'div', class: 'MainPage_LobbyDiv', elements:
                     [
-                        CreateElement({
-                            type: 'div', class: 'MainPage_LobbyContainer', elements: [
+                        this.lobbyContainer = CreateElement({
+                            type: 'div', class: 'MainPage_LobbyContainer', id: 'LobbyContainer', elements: [
                                 this.championDiv = CreateElement({
                                     type: 'div', class: 'MainPage_ChampionDiv row', elements: [
                                         this.championSelectDiv = CreateElement({
@@ -40,7 +40,7 @@ function MainPage(appLogic) {
                                         })
                                     ]
                                 }),
-                                (this.lobbyPage = new LobbyPage(this.appLogic)).getDiv()
+                                this.lobbyPog = (this.lobbyPage = new CDNdownloader(this.appLogic)).getDiv()
                             ]
                         }),
                         CreateElement({
@@ -73,7 +73,15 @@ function MainPage(appLogic) {
     this.updateOnlineList();
     this.updateNewsList();
 }
-
+MainPage.prototype.changeToLobbyView = function (yeah) {
+    if (yeah == true) {
+        var parent = document.getElementById("LobbyContainer");
+        parent.removeChild(this.lobbyPog);
+        this.lobbyPog = (this.lobbyPage = new LobbyPage(this.appLogic)).getDiv();
+        parent.appendChild(this.lobbyPog);
+        //document.body.appendChild(newChild);
+    }
+}
 MainPage.prototype.addServerLog = function (text) {
     var oldHeight = this.startingGameDiv.scrollHeight;
     window.requestAnimationFrame(CreateFunction(this, function () {
@@ -193,7 +201,7 @@ MainPage.prototype.updateNewsList = function () {
     });
     this.newsCollection.appendChild(playerDiv2);
     this.newsCollection.appendChild(playerDiv);
-    
+
 };
 
 MainPage.prototype.getDiv = function () {
@@ -203,7 +211,9 @@ MainPage.prototype.getDiv = function () {
 var ChampionList = [
     "Blitzcrank",
     "Caitlyn",
+    "Evelynn",
     "Ezreal",
+    "Graves",
     "MissFortune",
     "Lucian",
     "Lulu"

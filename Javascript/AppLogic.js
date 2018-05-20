@@ -15,6 +15,7 @@ class AppLogic {
         this.loginPage = new Login(this);
         this.mainPage = new MainPage(this);
         this.cdnDownloader = new CDNdownloader(this);
+        this.gameUpdated = this.gameUpdated();
 
         this.gameServerRepositories = [];
 
@@ -92,6 +93,7 @@ class AppLogic {
         //Hide login page, show main page, 
         this.loginPage.getDiv().remove();
         this.showMainPage();
+        this.updateGame();
         this.mainPage.addToChat("Connected to server as " + this.appData.nickname);
         this.mainPage.addToChat("Please use official Discord chat to report bugs or contact us");
         this.networkManager.sendNickname();
@@ -105,6 +107,31 @@ class AppLogic {
         this.loginPage.loginButton.disabled = false;
         this.viewDiv.appendChild(this.loginPage.getDiv());
     };
+    updateGame() {
+        var http = require('http');
+        var fs = require('fs-extra');
+        var jsonfile = require('jsonfile');
+        var path2 = this.appData.getLeagueDirectory() + '/files.json'
+        if (fs.existsSync(path2)) {
+            fs.copySync(appLogic.appData.getLeagueDirectory() + '/files.json', appLogic.appData.getLeagueDirectory() + '/oldFiles.json');
+            fs.unlinkSync(appLogic.appData.getLeagueDirectory() + '/files.json');
+            var file = fs.createWriteStream(appLogic.appData.getLeagueDirectory() + "/files.json");
+            var request = http.get("http://62.4.16.132:3000/files.json", function (response) {
+                response.pipe(file);
+                file.on('finish', function () {
+                    appLogic.cdnDownloader.readFiles();
+                })
+            });
+        } else {
+            var file = fs.createWriteStream(appLogic.appData.getLeagueDirectory() + "/files.json");
+            var request = http.get("http://62.4.16.132:3000/files.json", function (response) {
+                response.pipe(file);
+                file.on('finish', function () {
+                    appLogic.cdnDownloader.readFiles();
+                })
+            });
+        }
+    }
     showMainPage() {
         this.viewDiv.appendChild(this.mainPage.getDiv());
         var mainPage = this.mainPage;
@@ -123,6 +150,9 @@ class AppLogic {
             mainPage.championSelectChange();
         });
     };
+    gameUpdated() {
+        this.mainPage.changeToLobbyView();
+    }
     launchLeagueOfLegends(port, playerNum) {
         this.appData.lastConnectPort = port;
         this.appData.lastConnectPlayerNum = playerNum;

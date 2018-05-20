@@ -2,7 +2,7 @@ const child_process = require('child_process')
 function Login(appLogic) {
     this.appLogic = appLogic;
     this.mainDiv = CreateElement({type: 'div', class: 'Login_MainDiv container center-align', elements: [
-        CreateElement({type: 'div', text: 'League Path', class: 'Login_Label'}),
+        CreateElement({type: 'div', text: 'Where do you want League of Memories to install everything?', class: 'Login_Label'}),
         this.leaguePathInput = CreateElement({type: 'input', class: 'Login_PathInput input-text'}),
         CreateElement({type: 'div', text: 'Key (Only if you have one)', class: 'Login_Label'}),
         this.keyInput = CreateElement({type: 'input', class: 'Login_KeyInput input-text'}),
@@ -70,10 +70,10 @@ Login.prototype.loginButtonClicked = function() {
         return;
     }
     console.log(this.nicknameInput.value.length)
-    if (!this.appLogic.appData.isPathValid()) {
+    /*if (!this.appLogic.appData.isPathValid()) {
         alert("Invalid League of Legends path");
         return;
-    }
+    }*/
 
     this.loginButton.disabled = true;
 

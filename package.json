@@ -1,7 +1,7 @@
 {
   "name": "leagueofmemories",
   "productName": "LeagueOfMemories",
-  "version": "0.3.1",
+  "version": "0.4.1",
   "description": "League of Memories - A modded League of Legends 4.20 server",
   "license": "MIT",
   "author": "LeagueOfMemories",
@@ -25,7 +25,12 @@
   "dependencies": {
     "electron-builder-squirrel-windows": "^20.2.0",
     "electron-is-dev": "^0.3.0",
-    "electron-simple-updater": "^1.2.3"
+    "electron-simple-updater": "^1.2.3",
+    "md5-file": "^4.0.0",
+    "extract-zip": "^1.6.6",
+    "mkdirp":"^0.5.1",
+    "jsonfile": "^4.0.0",
+    "fs-extra":"^6.0.0"
   },
   "devDependencies": {
     "devtron": "^1.1.0",
@@ -55,7 +60,8 @@
       "!WindowsExec.bat",
       "!WindowsInstaller.bat",
       "!PublishUpdate.bat",
-      "!WindowsInstaller.bat"
+      "!WindowsInstaller.bat",
+      "!files/"
     ],
     "linux": {
       "category": "Game"
