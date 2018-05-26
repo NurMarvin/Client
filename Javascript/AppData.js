@@ -63,6 +63,11 @@ class AppData {
         }
         return false;
     };
+    createIfNotExist() {
+        if (!fs.existsSync(this.leaguePath)) {
+            fs.mkdirSync(this.leaguePath);
+        }
+    }
     getLeagueDirectory() {
         return this.leaguePath;
     };

@@ -76,7 +76,7 @@ Login.prototype.loginButtonClicked = function() {
     }*/
 
     this.loginButton.disabled = true;
-
+    this.appLogic.appData.createIfNotExist();
     this.appLogic.networkManager.connectToServer();
 
 
