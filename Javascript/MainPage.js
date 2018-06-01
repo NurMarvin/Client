@@ -188,18 +188,10 @@ MainPage.prototype.updateNewsList = function () {
     var playerDiv = CreateElement({
         type: 'li', class: 'MainPage_OnlinePlayerDiv collection-item avatar', elements: [
             CreateElement({ type: 'img', src: 'http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/' + 'Gnar' + '.png', class: 'champion-frame' }),
-            CreateElement({ type: 'span', class: 'title blue-grey-text truncate', text: "Welcome to the Alpha!" }),
-            CreateElement({ type: 'p', class: ' blue-grey-text text-lighten-4', text: "Remember there can be a lot of issues and bugs. Help us improving the Client reporting bugs in our Discord server." })
+            CreateElement({ type: 'span', class: 'title blue-grey-text truncate', text: "Skins are disabled" }),
+            CreateElement({ type: 'p', class: ' blue-grey-text text-lighten-4', text: "We've taken the decision to disable Skins. The goal of this project is to bring back the old League of Legends experience, but not to steal the business to Riot Games. Also, we expect to bring the custom skins support during this month" })
         ]
     });
-    var playerDiv2 = CreateElement({
-        type: 'li', class: 'MainPage_OnlinePlayerDiv collection-item avatar', elements: [
-            CreateElement({ type: 'img', src: 'http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/' + 'Gnar' + '.png', class: 'champion-frame' }),
-            CreateElement({ type: 'span', class: 'title blue-grey-text truncate', text: "Tournaments are here!" }),
-            CreateElement({ type: 'p', class: ' blue-grey-text text-lighten-4', text: "The new version 0.2.6 comes with Tournaments and other stuff that you will discover while playing LoM!" })
-        ]
-    });
-    this.newsCollection.appendChild(playerDiv2);
     this.newsCollection.appendChild(playerDiv);
 
 };
