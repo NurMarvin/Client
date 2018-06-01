@@ -1,7 +1,7 @@
 {
   "name": "leagueofmemories",
   "productName": "LeagueOfMemories",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "League of Memories - A modded League of Legends 4.20 server",
   "license": "MIT",
   "author": "LeagueOfMemories",
@@ -77,6 +77,6 @@
     "icon": "assets/icon"
   },
   "updater": {
-    "url": "https://raw.githubusercontent.com/Deudly/LeagueOfMemoriesRELEASE/master/updates.json"
+    "url": "https://raw.githubusercontent.com/LeagueOfMemories/Release/master/updates.json"
   }
 }
