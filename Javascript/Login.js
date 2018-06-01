@@ -13,7 +13,7 @@ function Login(appLogic) {
         this.loginButton = CreateElement({type: 'button', text: 'Login', class: 'Login_Button waves-effect waves-light btn-large'
             , onClick: CreateFunction(this, this.loginButtonClicked)}),
         CreateElement({type: 'div', text: '', class: 'Login_Label'}),
-        CreateElement({type: 'a', onClick: CreateFunction(this, this.registerClicked), text: "Don't have an account? Register here"})
+        CreateElement({type: 'a', class: 'register', onClick: CreateFunction(this, this.registerClicked), text: "Don't have an account? Register here"})
     ]});
     this.passwordInput.setAttribute("type", "password");
     var isWindows = process.platform === 'win32';

@@ -1,3 +1,7 @@
 .Login_MainDiv {
     margin-top: 15px;
 }
+
+.register {
+    cursor: pointer;
+}
