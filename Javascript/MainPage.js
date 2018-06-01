@@ -123,8 +123,8 @@ MainPage.prototype.championSelectChange = function () {
         });
     }
     this.carouselSkin.setAttribute('class', 'carousel');
-    $('.carousel').carousel({ dist: -30 });
-    $('.carousel').carousel('set', 0);
+    /*$('.carousel').carousel({ dist: -30 });
+    $('.carousel').carousel('set', 0);*/
 };
 
 MainPage.prototype.skinChange = function () {
