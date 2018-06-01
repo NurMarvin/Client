@@ -28,7 +28,7 @@ function CDNdownloader(appLogic) {
                     this.noLobbyDiv = CreateElement({
                         type: 'div', class: 'LobbyPage_NoLobbySelectedDiv valign-wrapper', elements: [
                             this.noLobbyDiv = CreateElement({
-                                type: 'h3', class: 'LobbyPage_NoLobbySelectedText valign center', text: 'Please, take a sit and wait while we update your game.', elements: [
+                                type: 'h3', class: 'LobbyPage_NoLobbySelectedText valign center', text: 'Please, take a seat and wait while we update your game.', elements: [
                                     CreateElement({ type: 'br' }),
                                     CreateElement({ type: 'img', src: 'assets/poro_sad.png' }),
                                     this.downloadedPercentage = CreateElement({ type: 'h2', id: 'DownloadedPercentage' })
