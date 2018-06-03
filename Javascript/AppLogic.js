@@ -4,6 +4,8 @@ let appLogic;
 window.onload = function () {
     appLogic = new AppLogic();
 };
+var selectedLang = "en";
+chooseLang();
 
 class AppLogic {
     constructor() {
@@ -44,10 +46,10 @@ class AppLogic {
                             type: 'div', class: 'col s6 center-align', elements: [
                                 this.tabNav = CreateElement({
                                     type: 'div', elements: [
-                                        this.playButton = CreateElement({ type: 'button', class: 'AppLogic_NavButtonSelected', text: 'Play' }),
-                                        this.masteriesButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: 'Masteries' }),
-                                        this.runesButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: 'Runes' }),
-                                        this.settingsButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: 'Settings' })
+                                        this.playButton = CreateElement({ type: 'button', class: 'AppLogic_NavButtonSelected', text: this.translate("play") }),
+                                        this.masteriesButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: this.translate("masteries") }),
+                                        this.runesButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: this.translate("runes") }),
+                                        this.settingsButton = CreateElement({ type: 'button', class: 'AppLogic_NavButton', text: this.translate("settings") })
                                     ]
                                 }),
                             ]
@@ -94,14 +96,14 @@ class AppLogic {
         this.loginPage.getDiv().remove();
         this.showMainPage();
         this.updateGame();
-        this.mainPage.addToChat("Connected to server as " + this.appData.nickname);
-        this.mainPage.addToChat("Please use official Discord chat to report bugs or contact us");
+        this.mainPage.addToChat(appLogic.translate("connectedAs") + " " + this.appData.nickname);
+        this.mainPage.addToChat(appLogic.translate("useDiscord"));
         this.networkManager.sendNickname();
         this.networkManager.sendKey(this.appData.key);
     }
     failWhileLogin() {
         this.loginPage.loginButton.disabled = true;
-        alert("Something went wrong while trying to login. Did you write your password well?")
+        alert(appLogic.translate("errorLogin"))
     }
     showLoginPage() {
         this.loginPage.loginButton.disabled = false;
@@ -180,4 +182,17 @@ class AppLogic {
 
         }
     };
+    translate(string) {
+        var lang = require('./Javascript/Lang/lang-' + selectedLang + '.js')
+        return lang[string];
+
+    }
 };
+
+function chooseLang() {
+    console.log(navigator.language)
+    var availableLang = ['en', 'es', 'ro', 'de', 'tr', 'fr']
+    if (availableLang.indexOf(navigator.language)) {
+        selectedLang = navigator.language;
+    }
+}

@@ -22,12 +22,12 @@ function MainPage(appLogic) {
                                                     this.championSelect = CreateElement({ type: 'select', id: 'championSelect', class: 'MainPage_ChampionSelect icons' }),
                                                 ]
                                         }),
-                                        this.skinSelectDiv = CreateElement({ type: 'button', id: 'selectSkin', class: 'MainPage_ButtonSelectSkin btn col s2', text: 'Select skin' }),
+                                        this.skinSelectDiv = CreateElement({ type: 'button', id: 'selectSkin', class: 'MainPage_ButtonSelectSkin btn col s2', text: appLogic.translate("selectSkin") }),
                                         this.modalSkin = CreateElement({
                                             type: 'div', id: 'modalSkin', class: 'modal modal-fixed-footer', elements: [
                                                 this.modalSkinContent = CreateElement({
                                                     type: 'div', class: 'modal-content', elements: [
-                                                        CreateElement({ type: 'h4', class: 'center-align', text: 'Select your skin' }),
+                                                        CreateElement({ type: 'h4', class: 'center-align', text: appLogic.translate("selectYourSkin") }),
                                                         this.carouselSkin = CreateElement({ type: 'div', class: 'carousel' })
                                                     ]
                                                 }),
@@ -61,7 +61,7 @@ function MainPage(appLogic) {
 
     this.championSelect.value = "Ezreal";
 
-    this.chatBoxInput.placeholder = "Type text...";
+    this.chatBoxInput.placeholder = appLogic.translate("typeText");
     this.chatBoxInput.onkeydown = CreateFunction(this, this.chatInputKeyDown);
 
     /*this.blockingOverlay = CreateElement({type: 'div', class: 'MainPage_BlockOverlay', text: 'Game Console', elements: [
@@ -155,7 +155,7 @@ MainPage.prototype.updateOnlineList = function () {
     this.onlineBoxDiv.appendChild(
         CreateElement({
             type: 'div', class: 'MainPage_OnlinePlayerDiv', elements: [
-                CreateElement({ type: 'div', class: 'MainPage_OnlinePlayerNameDiv', text: 'Players Online: ' + this.appLogic.networkManager.onlinePlayers.length }),
+                CreateElement({ type: 'div', class: 'MainPage_OnlinePlayerNameDiv', text: this.appLogic.translate("onlinePlayers") + ': ' + this.appLogic.networkManager.onlinePlayers.length }),
                 this.onlinePlayersCollection = CreateElement({ type: 'ul', class: 'collection' })
             ]
         })
@@ -180,7 +180,7 @@ MainPage.prototype.updateNewsList = function () {
     this.newsBoxDiv.appendChild(
         CreateElement({
             type: 'div', class: 'MainPage_OnlinePlayerDiv', elements: [
-                CreateElement({ type: 'div', class: 'MainPage_OnlinePlayerNameDiv', text: 'News: ' }),
+                CreateElement({ type: 'div', class: 'MainPage_OnlinePlayerNameDiv', text: this.appLogic.translate("news") + ': ' }),
                 this.newsCollection = CreateElement({ type: 'ul', class: 'collection' })
             ]
         })

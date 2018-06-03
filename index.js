@@ -14,7 +14,7 @@ app.on("ready", () => {
         dialog.showMessageBox({ type: 'info', message: text, buttons: ['Okay'] }, function (buttonIndex) {
         });
     };
-
+    
     if (!isDev) {
         updater.init({
             checkUpdateOnStart: true,

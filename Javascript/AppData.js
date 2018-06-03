@@ -5,6 +5,7 @@ class AppData {
         this.nickname = "";
         this.key = "";
         this.leaguePath = "";
+        this.lang = "";
         this.executablePath = "";
         this.executableDirectory = "";
         this.isGarena = false;

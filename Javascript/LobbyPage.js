@@ -5,11 +5,11 @@ class LobbyPage {
             type: 'div', class: 'LobbyPage_MainDiv row', elements: [
                 this.lobbyListDiv = CreateElement({
                     type: 'div', class: 'LobbyPage_LobbyListDiv col s3', elements: [
-                        CreateElement({ type: 'div', class: 'LobbyPage_LobbyListItem', text: 'Lobbies' }),
+                        CreateElement({ type: 'div', class: 'LobbyPage_LobbyListItem', text: appLogic.translate("lobbies") }),
                         CreateElement({
                             type: 'div', class: 'LobbyPage_CreateLobbyButtonDiv', elements: [
-                                CreateElement({ type: 'button', text: 'Create', class: 'LobbyPage_CreateLobbyButton btn', onClick: CreateFunction(this, this.createLobbyButton) }),
-                                CreateElement({ type: 'button', text: 'Tournament', class: 'LobbyPage_CreateLobbyButton btn', onClick: CreateFunction(this, this.createTournamentButton) })
+                                CreateElement({ type: 'button', text: appLogic.translate("buttonCreate"), class: 'LobbyPage_CreateLobbyButton btn', onClick: CreateFunction(this, this.createLobbyButton) }),
+                                CreateElement({ type: 'button', text: appLogic.translate("buttonTournament"), class: 'LobbyPage_CreateLobbyButton btn', onClick: CreateFunction(this, this.createTournamentButton) })
                             ]
                         }),
                         this.createLobbyDiv = CreateElement({
@@ -24,7 +24,7 @@ class LobbyPage {
                         this.noLobbyDiv = CreateElement({
                             type: 'div', class: 'LobbyPage_NoLobbySelectedDiv valign-wrapper', elements: [
                                 this.noLobbyDiv = CreateElement({
-                                    type: 'h3', class: 'LobbyPage_NoLobbySelectedText valign center', text: 'Please select or create a lobby.', elements: [
+                                    type: 'h3', class: 'LobbyPage_NoLobbySelectedText valign center', text: appLogic.translate("selectOrCreate"), elements: [
                                         CreateElement({ type: 'br' }),
                                         CreateElement({ type: 'img', src: 'assets/poro_sad.png' }),
                                     ]
@@ -42,7 +42,7 @@ class LobbyPage {
     };
 
     createLobbyButton() {
-        var name = prompt("Enter name of the new lobby: ", "");
+        var name = prompt(appLogic.translate("enterLobbyName") + " ", "");
 
         if (name != null) {
             this.appLogic.networkManager.sendCreateLobby(name);
@@ -50,7 +50,7 @@ class LobbyPage {
     };
 
     createTournamentButton() {
-        var key = prompt("Enter Tournament game key: ", "");
+        var key = prompt(appLogic.translate("enterTournamentKey") + " ", "");
 
         if (key != null) {
             this.appLogic.networkManager.sendJoinTournament(key);
@@ -168,11 +168,11 @@ class Lobby {
                         this.titleDiv = CreateElement({ type: 'h4', class: 'LobbyPage_Lobby_TitleDiv col s5 valign' }),
                         this.exitButton = CreateElement({
                             type: 'button', class: 'LobbyPage_Lobby_StartButton btn col s3 valign',
-                            text: 'Leave Lobby', onClick: CreateFunction(this, function () { this.lobbyPage.leaveLobby(); })
+                            text: appLogic.translate("leaveLobby"), onClick: CreateFunction(this, function () { this.lobbyPage.leaveLobby(); })
                         }),
                         this.startButton = CreateElement({
                             type: 'button', class: 'LobbyPage_Lobby_StartButton btn col s3 valign',
-                            text: 'Start Game', onClick: CreateFunction(this, function () { this.lobbyPage.startGame(this.id); })
+                            text: appLogic.translate("startGame"), onClick: CreateFunction(this, function () { this.lobbyPage.startGame(this.id); })
                         }),
                     ]
                 }),
@@ -252,7 +252,7 @@ class Lobby {
         }
     
         this.sideBarDisplayTitleDiv.innerText = "("+this.id+")" + " " + this.name;
-        this.sideBarDisplayPlayersDiv.innerText = "Players: " + (this.redSide.length + this.blueSide.length);
+        this.sideBarDisplayPlayersDiv.innerText = appLogic.translate("players") + ": " + (this.redSide.length + this.blueSide.length);
     };
     
     setSidebarSelected(selected) {

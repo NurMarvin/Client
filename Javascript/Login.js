@@ -1,20 +1,24 @@
 const child_process = require('child_process')
 function Login(appLogic) {
     this.appLogic = appLogic;
-    this.mainDiv = CreateElement({type: 'div', class: 'Login_MainDiv container center-align', elements: [
-        CreateElement({type: 'div', text: 'Where do you want League of Memories to install everything?', class: 'Login_Label'}),
-        this.leaguePathInput = CreateElement({type: 'input', class: 'Login_PathInput input-text'}),
-        CreateElement({type: 'div', text: 'Key (Only if you have one)', class: 'Login_Label'}),
-        this.keyInput = CreateElement({type: 'input', class: 'Login_KeyInput input-text'}),
-        CreateElement({type: 'div', text: 'Nickname', class: 'Login_Label'}),
-        this.nicknameInput = CreateElement({type: 'input', class: 'Login_NameInput input-text'}),
-        CreateElement({type: 'div', text: 'Password', class: 'Login_Label'}),
-        this.passwordInput = CreateElement({type: 'input', class: 'Login_PasswordInput input-text'}),
-        this.loginButton = CreateElement({type: 'button', text: 'Login', class: 'Login_Button waves-effect waves-light btn-large'
-            , onClick: CreateFunction(this, this.loginButtonClicked)}),
-        CreateElement({type: 'div', text: '', class: 'Login_Label'}),
-        CreateElement({type: 'a', class: 'register', onClick: CreateFunction(this, this.registerClicked), text: "Don't have an account? Register here"})
-    ]});
+    this.mainDiv = CreateElement({
+        type: 'div', class: 'Login_MainDiv container center-align', elements: [
+            CreateElement({ type: 'div', text: appLogic.translate("pathInput"), class: 'Login_Label' }),
+            this.leaguePathInput = CreateElement({ type: 'input', class: 'Login_PathInput input-text' }),
+            CreateElement({ type: 'div', text: appLogic.translate("keyInput"), class: 'Login_Label' }),
+            this.keyInput = CreateElement({ type: 'input', class: 'Login_KeyInput input-text' }),
+            CreateElement({ type: 'div', text: appLogic.translate("nicknameInput"), class: 'Login_Label' }),
+            this.nicknameInput = CreateElement({ type: 'input', class: 'Login_NameInput input-text' }),
+            CreateElement({ type: 'div', text: appLogic.translate("passwordInput"), class: 'Login_Label' }),
+            this.passwordInput = CreateElement({ type: 'input', class: 'Login_PasswordInput input-text' }),
+            this.loginButton = CreateElement({
+                type: 'button', text: appLogic.translate("loginButton"), class: 'Login_Button waves-effect waves-light btn-large'
+                , onClick: CreateFunction(this, this.loginButtonClicked)
+            }),
+            CreateElement({ type: 'div', text: '', class: 'Login_Label' }),
+            CreateElement({ type: 'a', class: 'register', onClick: CreateFunction(this, this.registerClicked), text: appLogic.translate("registerLink") })
+        ]
+    });
     this.passwordInput.setAttribute("type", "password");
     var isWindows = process.platform === 'win32';
     var isMac = process.platform === 'darwin';
@@ -38,7 +42,7 @@ function Login(appLogic) {
         this.keyInput.value = localStorage.getItem("key");
     }
 }
-Login.prototype.loginButtonClicked = function() {
+Login.prototype.loginButtonClicked = function () {
 
     this.appLogic.appData.host = "62.4.16.132";
     this.appLogic.appData.leaguePath = this.leaguePathInput.value;
@@ -54,19 +58,19 @@ Login.prototype.loginButtonClicked = function() {
     localStorage.setItem("key", this.keyInput.value);
 
     if (this.leaguePathInput.value.length <= 0) {
-        alert("Type in League Path");
+        alert(appLogic.translate("errorLeaguePathLength"));
         return;
     }
     if (this.nicknameInput.value.length > 16) {
-        alert("Your nickname is too long");
+        alert(appLogic.translate("errorNicknameTooLong"));
         return;
     }
     if (this.nicknameInput.value.length <= 0) {
-        alert("Type your nickname");
+        alert(appLogic.translate("errorNoNickname"));
         return;
     }
     if (this.passwordInput.value.length <= 0) {
-        alert("Please, type your password");
+        alert(appLogic.translate("errorNoPassword"));
         return;
     }
     console.log(this.nicknameInput.value.length)
@@ -81,9 +85,9 @@ Login.prototype.loginButtonClicked = function() {
 
 
 };
-Login.prototype.registerClicked = function(){
+Login.prototype.registerClicked = function () {
     child_process.execSync('start http://leagueofmemories.com/forum/')
 }
-Login.prototype.getDiv = function() {
+Login.prototype.getDiv = function () {
     return this.mainDiv;
 };

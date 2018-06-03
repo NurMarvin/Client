@@ -28,7 +28,7 @@ function CDNdownloader(appLogic) {
                     this.noLobbyDiv = CreateElement({
                         type: 'div', class: 'LobbyPage_NoLobbySelectedDiv valign-wrapper', elements: [
                             this.noLobbyDiv = CreateElement({
-                                type: 'h3', class: 'LobbyPage_NoLobbySelectedText valign center', text: 'Please, take a seat and wait while we update your game.', elements: [
+                                type: 'h3', class: 'LobbyPage_NoLobbySelectedText valign center', text: appLogic.translate("waitUpdate"), elements: [
                                     CreateElement({ type: 'br' }),
                                     CreateElement({ type: 'img', src: 'assets/poro_sad.png' }),
                                     this.downloadedPercentage = CreateElement({ type: 'h2', id: 'DownloadedPercentage' })
@@ -140,7 +140,7 @@ CDNdownloader.prototype.readFiles = function (isRunRight) {
     }*/
 }
 function loop(newFiles, count) {
-    document.getElementById("DownloadedPercentage").innerHTML = "Checking files..."
+    document.getElementById("DownloadedPercentage").innerHTML = appLogic.translate("checkingFiles")
     if (count < newFiles.length) {
         fs.exists(appLogic.appData.getLeagueDirectory() + "/" + newFiles[count].path, function (exist) {
             if (exist) {
