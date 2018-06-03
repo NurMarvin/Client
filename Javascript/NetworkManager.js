@@ -118,7 +118,7 @@ class NetworkManager {
                 } break;
                 //{message: "Start Game", port: port, playerNum: playerNum}
                 case "Start Game": {
-                    this.appLogic.launchLeagueOfLegends(message['port'], message['playerNum']);
+                    this.appLogic.launchLeagueOfLegends(message['port'], message['playerNum'], message['ip']);
                     //this.appLogic.mainPage.setBlockOverlayOff();
                 } break;
                 case "Waiting For Game Start": {
