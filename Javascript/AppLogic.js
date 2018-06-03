@@ -155,20 +155,20 @@ class AppLogic {
     gameUpdated() {
         this.mainPage.changeToLobbyView();
     }
-    launchLeagueOfLegends(port, playerNum) {
+    launchLeagueOfLegends(port, playerNum, ip) {
         this.appData.lastConnectPort = port;
         this.appData.lastConnectPlayerNum = playerNum;
 
         console.log("Starting league with path: " + this.appData.getLeagueDirectory());
         console.log("with executable: " + this.appData.getExecutablePath());
 
-        console.log("Arguments: " + this.appData.host + " " + port + " 17BLOhi6KZsTtldTsizvHg== " + playerNum);
+        console.log("Arguments: " + ip + " " + port + " 17BLOhi6KZsTtldTsizvHg== " + playerNum);
 
         const spawn = require('child_process').spawn;
         var isMac = process.platform === 'darwin';
         var isWindows = process.platform === 'win32';
         if (isMac) {
-            var executeCommand = "riot_launched=true ./Leagueoflegends 8394 LoLLauncher \"\" \"" + this.appData.host + " " + port + " 17BLOhi6KZsTtldTsizvHg== " + playerNum + "\"";
+            var executeCommand = "riot_launched=true ./Leagueoflegends 8394 LoLLauncher \"\" \"" + ip + " " + port + " 17BLOhi6KZsTtldTsizvHg== " + playerNum + "\"";
 
             console.log("Launched command: " + executeCommand);
 
