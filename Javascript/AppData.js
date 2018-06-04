@@ -21,25 +21,14 @@ class AppData {
             if (leaguePath.substr(leaguePath.length - 1) != "\\") {
                 leaguePath = leaguePath + "\\";
             }
-            var garenaPath = leaguePath;
             leaguePath = leaguePath + "";
             leaguePath = leaguePath.replaceAll('\\', '/');
-            console.log("fefe" + leaguePath)
-            garenaPath = garenaPath.replaceAll('\\', '/');
             var leagueExecutable = leaguePath + "League of Legends.exe";
-            var garenaExecutable = garenaPath + "League of Legends.exe";
 
             var fs = require('fs');
             if (fs.existsSync(leagueExecutable)) {
                 this.executablePath = leagueExecutable;
-                this.isGarena = false;
                 this.executableDirectory = leaguePath;
-                return true;
-            }
-            if (fs.existsSync(garenaExecutable)) {
-                this.executablePath = garenaExecutable;
-                this.isGarena = true;
-                this.executableDirectory = garenaPath;
                 return true;
             }
         }

@@ -74,10 +74,10 @@ Login.prototype.loginButtonClicked = function () {
         return;
     }
     console.log(this.nicknameInput.value.length)
-    /*if (!this.appLogic.appData.isPathValid()) {
+    if (!this.appLogic.appData.isPathValid()) {
         alert("Invalid League of Legends path");
         return;
-    }*/
+    }
 
     this.loginButton.disabled = true;
     this.appLogic.appData.createIfNotExist();
