@@ -134,12 +134,20 @@ MainPage.prototype.skinChange = function () {
 
 MainPage.prototype.chatInputKeyDown = function (e) {
     if (e.keyCode == 13) {
+        if (this.chatBoxDiv.innerText.length > 200) {
+            console.log("Cancel sending message because it's too long");
+            return;
+        }
         this.appLogic.networkManager.sendChat(this.chatBoxInput.value);
         this.chatBoxInput.value = "";
     }
 };
 
 MainPage.prototype.addToChat = function (chat) {
+    if (chat.length > 200) {
+        console.log("Cancel receiving message because it's too long");
+        return;
+    }
     var oldHeight = this.chatBoxDiv.scrollHeight;
     this.chatBoxDiv.innerText += chat + '\n';
     window.requestAnimationFrame(CreateFunction(this, function () {

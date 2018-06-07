@@ -52,6 +52,8 @@ publisher.json
 oldFiles.json
 files.json
 .idea/workspace.xml
+.idea/
+Client.iml
 
 dist
 dist/win-unpacked/resources/app.asar
